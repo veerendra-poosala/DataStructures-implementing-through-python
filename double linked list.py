@@ -43,6 +43,37 @@ class doubleLinkedList():
         new_node.prev=first_node
         new_node.next=None
 
+    #inserting at middle
+    def insert_at_middle(self,index,new_data):
+        if index < 0:
+            raise Exception("INVALID INDEX")
+            return
+        if index>self.get_length():
+            raise Exception("INVALID INDEX")
+            return
+        
+        if self.head is None and index == 0:
+            self.insert_at_beginning(new_data)
+            return
+        if index == 0:
+            self.insert_at_beginning(new_data)
+            return
+        elif index == self.get_length():
+            self.insert_at_end(new_data)
+            return
+        first_node = self.head
+        count=0
+        nxt=first_node.next
+        new_node=Node(new_data)
+        while first_node.next:
+            if count == index-1:
+                new_node.prev=first_node.next
+                first_node.next=new_node
+                new_node.next=new_node.prev    
+            first_node=first_node.next
+            count+=1
+
+
 
 
 
@@ -85,6 +116,8 @@ if __name__=="__main__":
     d1.insert_at_beginning(44)
     d1.insert_at_beginning(43)
     d1.insert_at_end(46)
+    d1.insert_at_end(48)
+    d1.insert_at_middle(4,47)
     d1.print_dll()
 
     d2=doubleLinkedList("Second DLL")
