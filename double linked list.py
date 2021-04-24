@@ -74,6 +74,53 @@ class doubleLinkedList():
             count+=1
 
 
+    #deletining elements
+    #deleting an element at beginning
+    def removing_an_element_at_beg(self):
+        n=self.name
+        if self.head is None:
+            print("Removing from {} is NOt Possible".format(n))
+            return
+        first_node=self.head
+        nxt=first_node.next
+        prev=first_node.prev
+        self.head=nxt
+        nxt.prev =None
+    
+    #deleting an element at ending
+    def removing_an_element_at_end(self):
+        n=self.name
+        length1=self.get_length()
+        #print("length of dll is {}".format(length1))
+        if self.head is None:
+            print("Removing from {} is NOt Possible".format(n))
+            return
+        if length1 == 1:
+            self.removing_an_element_at_beg()
+            return
+        first_node=self.head
+        nxt=first_node.next
+        prev=first_node.prev
+        length2=length1-2
+        #print(length2)
+        count=0
+        while first_node.next:
+            if count == length2:
+                first_node.next=nxt.next
+                nxt.prev=None
+                nxt.next=None
+                break
+            first_node=first_node.next
+            count+=1
+            
+
+
+
+
+        
+
+
+
 
 
 
@@ -90,7 +137,7 @@ class doubleLinkedList():
         while first_node:
             first_node=first_node.next
             count+=1
-        print("The length of the DLL is {}".format(count))
+        #print("The length of the DLL is {}".format(count))
         return count
 
 
@@ -119,9 +166,14 @@ if __name__=="__main__":
     d1.insert_at_end(48)
     d1.insert_at_middle(4,47)
     d1.print_dll()
+    #d1.removing_an_element_at_beg()
+    d1.removing_an_element_at_end()
+    d1.print_dll()
 
     d2=doubleLinkedList("Second DLL")
     d2.insert_at_end(85)
     d2.insert_at_end(86)
     d2.insert_at_end(87)
+    d2.print_dll()
+    d2.removing_an_element_at_beg()
     d2.print_dll()
