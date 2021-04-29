@@ -22,7 +22,13 @@ class cll():
             self.head=newNode
             newNode.next=self.head
             return
-
+        firstNOde=self.head
+        newNode=Node(new_data)
+        newNode.next=firstNOde
+        while firstNOde and  firstNOde.next!=self.head:
+            firstNOde=firstNOde.next
+        firstNOde.next=newNode
+        #newNode.next=self.head
 
     #creating prepending function or inserting at beginning function
     def prepending_a_node(self,new_data):
@@ -33,8 +39,11 @@ class cll():
             return
         firstNOde=self.head
         newNode=Node(new_data)
+        newNode.next= firstNOde
+        while firstNOde and  firstNOde.next!=self.head:
+            firstNOde=firstNOde.next
+        firstNOde.next=newNode
         self.head=newNode
-        newNode.next=firstNOde
     #creating a function for inserting at middle
     def insert_at_middle(self,index,new_data):
         if index < 0 or index >= self.get_length_of_cll():
@@ -65,11 +74,13 @@ class cll():
         if self.head and self.get_length_of_cll() == 1:
             self.head=None
             return
-        firstNOde=self.head
-        self.head=firstNOde.next
-        firstNOde.next=firstNOde.next.next
+        firstNOde=self.head    
+        while firstNOde and firstNOde.next!=self.head:
+            firstNOde=firstNOde.next
+        firstNOde.next=None
+        self.head=self.head.next
         firstNOde=None
-    '''
+    
     #removing an element at end
     def removing_an_element_at_end(self):
         n=self.name
@@ -89,8 +100,23 @@ class cll():
                 break
             firstNOde=firstNOde.next
             count+=1
-        '''
+        
 
+    #removing an element at middle
+    def removing_an_element_at_middle(self,index):
+        if index < 0 or index >= self.get_length_of_cll():
+            raise Exception("index error")
+            return
+        if index == 0:
+            self.removing_an_element_at_beg()
+            return
+        firstNOde=self.head
+        count=0
+        while firstNOde and firstNOde.next!=self.head:
+            if count == index-1:
+                firstNOde.next=firstNOde.next.next
+            firstNOde=firstNOde.next
+            count+=1
 
 
 
@@ -118,24 +144,28 @@ class cll():
             return
         firstNOde=self.head
         string=" "
-        while firstNOde and firstNOde.next != self.head:
+        while firstNOde : 
             string=str(firstNOde.data)+" --> "
             firstNOde=firstNOde.next
             print(string,end=" ")
+            if firstNOde == self.head:
+                break
         print()
 
 #creating objects in main function
 def main():
     c1=cll("first Circular linked list")
-    #c1.insert_at_end(89)
-    #c1.insert_at_end(90)
+    c1.insert_at_end(89)
+    c1.insert_at_end(90)
     c1.prepending_a_node(91)
-    #c1.prepending_a_node(1000)
-    #c1.insert_at_end(1)
-    #c1.insert_at_middle(2,45)
-    #c1.print_cll()
-    #c1.removing_an_element_at_beg()
-    #c1.removing_an_element_at_end()
+    c1.prepending_a_node(1000)
+    c1.insert_at_end(4646)
+    c1.insert_at_end(1)
+    c1.insert_at_middle(1,45)
+    c1.print_cll()
+    c1.removing_an_element_at_beg()
+    c1.removing_an_element_at_end()
+    c1.removing_an_element_at_middle(1)
     c1.print_cll()
 
 if __name__=="__main__":
