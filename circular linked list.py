@@ -22,11 +22,7 @@ class cll():
             self.head=newNode
             newNode.next=self.head
             return
-        firstNOde=self.head
-        newNode=Node(new_data)
-        while firstNOde and firstNOde.next!=self.head:
-            firstNOde=firstNOde.next
-        firstNOde.next=newNode
+
 
     #creating prepending function or inserting at beginning function
     def prepending_a_node(self,new_data):
@@ -58,6 +54,44 @@ class cll():
                 break
             firstNOde=firstNOde.next
             count+=1
+
+    #removing nodes on cll
+    #removing at beginning function
+    def removing_an_element_at_beg(self):
+        n=self.name
+        if self.head is None:
+            print("Removing from Empty {} is Not Possible".format(n))
+            return
+        if self.head and self.get_length_of_cll() == 1:
+            self.head=None
+            return
+        firstNOde=self.head
+        self.head=firstNOde.next
+        firstNOde.next=firstNOde.next.next
+        firstNOde=None
+    '''
+    #removing an element at end
+    def removing_an_element_at_end(self):
+        n=self.name
+        length=self.get_length_of_cll()
+        if self.head is None:
+            print("Removing from  Empty {} is Not Possible".format(n))
+            return
+        if self.head and length==1:
+            self.head=None
+            return
+        firstNOde=self.head
+        length2=length-2
+        count=0
+        while firstNOde and firstNOde.next != self.head:
+            if count == length2:
+                firstNOde.next=firstNOde.next.next
+                break
+            firstNOde=firstNOde.next
+            count+=1
+        '''
+
+
 
 
 
@@ -93,10 +127,15 @@ class cll():
 #creating objects in main function
 def main():
     c1=cll("first Circular linked list")
-    c1.insert_at_end(89)
-    c1.insert_at_end(90)
+    #c1.insert_at_end(89)
+    #c1.insert_at_end(90)
     c1.prepending_a_node(91)
-    c1.insert_at_middle(2,45)
+    #c1.prepending_a_node(1000)
+    #c1.insert_at_end(1)
+    #c1.insert_at_middle(2,45)
+    #c1.print_cll()
+    #c1.removing_an_element_at_beg()
+    #c1.removing_an_element_at_end()
     c1.print_cll()
 
 if __name__=="__main__":
