@@ -46,7 +46,7 @@ class cll():
         self.head=newNode
     #creating a function for inserting at middle
     def insert_at_middle(self,index,new_data):
-        if index < 0 or index >= self.get_length_of_cll():
+        if index < 0 and index >= self.get_length_of_cll():
             raise Exception("index error")
             return
         if index == 0:
@@ -129,9 +129,12 @@ class cll():
             return
         firstNOde=self.head
         count=0
-        while firstNOde and firstNOde.next != self.head:
+        while firstNOde:
             firstNOde=firstNOde.next
             count+=1
+            if firstNOde == self.head:
+                break
+        #print("length of cll is {} ".format(count))
         return count
 
 
@@ -162,11 +165,23 @@ def main():
     c1.insert_at_end(4646)
     c1.insert_at_end(1)
     c1.insert_at_middle(1,45)
+    c1.get_length_of_cll()
     c1.print_cll()
     c1.removing_an_element_at_beg()
-    c1.removing_an_element_at_end()
-    c1.removing_an_element_at_middle(1)
     c1.print_cll()
+    c1.removing_an_element_at_end()
+    c1.print_cll()
+    c1.removing_an_element_at_middle(1)
+    c=c1.get_length_of_cll()
+    print("The length of the cll is {}".format(c))
+    c1.print_cll()
+
+    c2=cll("Second Circular Linked list")
+    c2.removing_an_element_at_beg()
+    c2.removing_an_element_at_end()
+    c2.insert_at_middle(0,4545)
+    c2.removing_an_element_at_middle(0)
+    c2.print_cll()
 
 if __name__=="__main__":
     main()
